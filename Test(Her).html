@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Wishlist Checklist</title>
+    <link rel="stylesheet" href="Hstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="wishlist-header">
+            <h1>🎅 Merry Christmas 🎄</h1>
+            <p>Chào cậu pé, Giáng Sinh sắp đến rồi! Vậy nên hãy viết ra những điều ước của cậu nhé. Tớ sẽ gửi chúng đến ông già Noel. Vào đêm 24/12, ông ấy sẽ đứng trước đầu giường cậu và trao tặng những món quà bất ngờ. Giờ thì hãy liệt kê tất cả những điều cậu mong muốn. Còn việc chọn quà, cứ để ông già Noel loooo</p>
+            
+            <div class="input-area">
+                <input type="text" id="wishInput" placeholder="Thêm mục ước nguyện...">
+                <button id="addButton"><i class="fas fa-plus"></i> Thêm</button>
+            </div>
+        </header>
+
+        <div class="checklist-area">
+            <h2>✨ WISHLIST CHECKLIST ✨</h2>
+            <ul id="wishList">
+                <li class="wish-item">
+                    <div class="actions">
+                        <i class="fas fa-check check-btn"></i>
+                        <i class="fas fa-trash delete-btn"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="send-area">
+            <button id="sendButton" class="btn send-btn">
+                <span class="btn-text">Gửi Điều ước</span>
+                <div class="spinner"></div> </button>
+            <div id="statusMessage" class="message-box"></div> 
+        </div>
+        
+        <footer class="christmas-decor">
+            <p>🎁 Chúc bạn một mùa Giáng Sinh an lành! 🎁</p>
+        </footer>
+    </div>
+
+    <script src="Hscript.js"></script>
+</body>
+</html>

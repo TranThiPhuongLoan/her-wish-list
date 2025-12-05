@@ -1,0 +1,211 @@
+/* Thiết lập chung và font chữ */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+/* HEADER - Phần Giáng Sinh */
+.wishlist-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+.wishlist-header h1 {
+    color: #c0392b; /* Màu đỏ Giáng Sinh */
+    font-size: 2.5em;
+    letter-spacing: 2px;
+}
+
+.checklist-area h2 {
+    color: #27ae60; /* Màu xanh lá Giáng Sinh */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* INPUT VÀ NÚT THÊM */
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#wishInput {
+    font-family: montserrat;
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+#addButton {
+    font-family: montserrat;
+    font-weight: bold;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+#addButton:hover {
+    background-color: #1e8449;
+}
+
+/* DANH SÁCH CHECKLIST */
+#wishList {
+    list-style: none;
+    padding: 0;
+}
+
+.wish-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px dashed #949494;
+    background-color: #fff;
+    transition: background-color 0.2s;
+    font-size: 1.1em;
+}
+/* Quy tắc CHUNG cho nút (.btn) */
+.btn {
+    display: flex; /* Bật Flexbox */
+    position: relative; /* Quan trọng cho spinner */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa nội dung (chữ) */
+}
+/* Thêm style cho khu vực nút Gửi */
+.send-area{
+    text-align: center; /* Căn giữa button */
+    margin-top: 30px;
+    padding-top: 20px;
+}
+.btn-text{
+    color: #ffffff;
+    font-weight: bold;
+}
+.send-btn{
+    background-color: #e74c3c; /* Màu đỏ nổi bật cho nút Gửi */
+    width: 200px; /* Định kích thước riêng cho nút Gửi */
+    margin-bottom: 20px;
+    border-radius: 16px;
+    padding: 12px 14px;
+    border: none;
+    color: #b1b1b1;
+    box-shadow: 0.2px 2px 3.2px 0.2px;
+    display: inline-flex;
+    text-align: center;
+} 
+.send-btn:hover {
+    background-color: #c0392b; 
+}
+.message-box {
+    padding: 15px;
+    background-color: #d4edda; /* Màu nền xanh lá nhạt */
+    color: #155724; /* Màu chữ xanh đậm */
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    font-weight: bold;
+    display: none; /* Ẩn mặc định */
+    margin: 15px auto 0;
+    max-width: 80%;
+    display: none;
+}
+/* Thêm style cho trạng thái gửi thành công */
+.message-box.success {
+    display: block !important;
+}
+
+/* Hiệu ứng khi hoàn thành */
+.wish-item.completed .item-text {
+    text-decoration: line-through;
+    color: #95a5a6;
+    font-style: italic;
+}
+/* Trạng thái Mặc định: Ẩn spinner */
+.spinner {  
+    width: 30px; 
+    height: 30px;
+    border: 4px solid white; 
+    border-top-color: transparent; /* Giúp tạo hiệu ứng "mất" */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    display: none; /* Ẩn hoàn toàn */
+    opacity: 0;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+/* Trạng thái Loading: Hiện spinner và ẩn text */
+.btn.loading .btn-text {
+    flex-basis: 0;
+    flex-shrink: 1;
+    opacity: 0; /* Ẩn chữ */
+    width: 0;
+    overflow: hidden;
+    padding: 0; 
+    margin: 0;
+}
+
+.btn.loading .spinner {
+    display: block; /* HIỆN spinner */
+    opacity: 1; /* Hiện rõ ràng */
+}
+
+/* Nút Hành động (Check và Delete) */
+.actions i {
+    cursor: pointer;
+    margin-left: 15px;
+    transition: color 0.2s;
+}
+
+.check-btn {
+    color: #95a5a6; /* Màu xám ban đầu */
+}
+
+.wish-item.completed .check-btn {
+    color: #2980b9; /* Màu xanh khi đã check */
+}
+
+.delete-btn {
+    color: #e74c3c; /* Màu đỏ cho nút xóa */
+}
+
+.delete-btn:hover {
+    color: #c0392b;
+}
+
+/* Footer trang trí */
+.christmas-decor {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.christmas-decor p {
+    color: #c0392b;
+    font-size: 1.2em;
+    font-weight: bold;
+}
