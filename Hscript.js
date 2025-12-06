@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const wishList = document.getElementById('wishList');
     const wishInput = document.getElementById('wishInput');
     const addButton = document.getElementById('addButton');
+    emailjs.init({
+    publicKey: 'FqhdkG3YnbSHJsVXb', // Thay bằng Public Key của bạn
+    });
 
     // Hàm mới: Đặt lại trạng thái toàn bộ phiếu ước nguyện
     function resetFormState() {
@@ -102,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendButton = document.getElementById('sendButton');
     const statusMessage = document.getElementById('statusMessage');
 
+    
     // Hàm xử lý sự kiện Gửi
     sendButton.addEventListener('click', function() {
         
@@ -109,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (sendButton.classList.contains('loading')) {
             return;
         }
-        // 🛑 BƯỚC MỚI: KIỂM TRA DANH SÁCH TRỐNG (VALIDATION)
+        // KIỂM TRA DANH SÁCH TRỐNG (VALIDATION)
         if (wishList.children.length === 0) {
         
             // Cài đặt style và nội dung cho thông báo lỗi
@@ -117,22 +121,69 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Đặt màu và nội dung cho thông báo lỗi
             alert("Ơ chưa có ước nguyện nào mà cậu!!!");
-            // statusMessage.style.backgroundColor = '#f8d7da'; // Màu nền đỏ nhạt
-            // // statusMessage.style.color = '#721c24';           // Màu chữ đỏ đậm
-            // // statusMessage.style.borderColor = '#f5c6cb';     // Màu viền
-            // // statusMessage.style.display = 'block';
-            
             return; // Dừng hàm, không chạy loading
         }
+        // Lấy danh sách ước nguyện để chuẩn bị cho việc gửi mail
+        const wishItems = Array.from(wishList.children).map((li, index) => {
+        // Thu thập nội dung và đánh số thứ tự
+        return `${index + 1}. ${li.querySelector('.item-text').textContent}`; 
+        });
+
+        // Chuyển danh sách thành một chuỗi duy nhất, mỗi mục là một dòng
+        const emailContent = wishItems.join('\n'); 
+
+        // Tạo đối tượng chứa các biến sẽ gửi đi
+        const templateParams = {
+
+        // Đây là biến mà bạn đã đặt trong Email Template: {{wishlist_content}}
+        wishlist_content: emailContent, 
+        // Bạn có thể thêm biến recipient_email: 'nguoinhan@example.com' ở đây
+        };
 
         // 2. Bắt đầu Loading (thêm class để hiện spinner)
         sendButton.classList.add('loading');
         statusMessage.classList.remove('success'); // Đảm bảo thông báo cũ bị ẩn
         statusMessage.style.display = 'none';
 
+            // 3. GỌI HÀM GỬI EMAIL VÀ XỬ LÝ KẾT QUẢ
+    
+    emailjs.send('service_xlmx3wj', 'template_ayowz17', templateParams)
+        .then((response) => {
+           console.log('EMAIL SENT SUCCESSFULLY!', response.status, response.text);
+           
+           // Hiển thị thông báo thành công
+           statusMessage.textContent = "Điều ước của cậu đã được gửi thành công! 💌 Một email xác nhận đã được gửi. Hãy chuẩn bị tinh thần nhé!";
+           
+           // ... (Logic hiển thị thông báo SUCCESS, ẩn nút gửi, ẩn nút xóa - như đã hướng dẫn trước đó) ...
+           
+           sendButton.classList.remove('loading');
+           sendButton.style.display = 'none';
+           
+           // Ẩn nút xóa
+           const deleteButtons = wishList.querySelectorAll('.delete-btn'); 
+           deleteButtons.forEach(button => {
+               button.style.display = 'none';
+           });
+
+           // Hiển thị thông báo
+           statusMessage.classList.add('success');
+           statusMessage.style.display = 'block';
+
+        }, (error) => {
+           console.log('EMAIL FAILED...', error);
+           
+           // Xử lý khi gửi thất bại
+           statusMessage.textContent = "Gửi thất bại. Vui lòng thử lại sau!";
+           statusMessage.style.backgroundColor = '#f8d7da';
+           statusMessage.style.color = '#721c24'; 
+           statusMessage.style.display = 'block';
+           sendButton.classList.remove('loading');
+        });
+
         // 3. Mô phỏng quá trình gửi (ví dụ: 2 giây)
         setTimeout(function() {
-            
+        
+            // 🛑 TẠI ĐÂY: Dữ liệu (wishItems) sẽ được gửi đến Backend để xử lý email 🛑
             // 4. Xử lý sau khi gửi thành công
             
             // Cập nhật nội dung thông báo
@@ -156,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.style.display = 'none';
             });
 
-        }, 2000); // Đặt độ trễ 2000ms (2 giây) để dễ dàng quan sát hiệu ứng spinner
+        }, 4000); // Đặt độ trễ 2000ms (2 giây) để dễ dàng quan sát hiệu ứng spinner
     });
     
 });
