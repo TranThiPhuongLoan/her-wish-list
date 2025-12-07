@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
            console.log('EMAIL SENT SUCCESSFULLY!', response.status, response.text);
            
            // Hiển thị thông báo thành công
-           statusMessage.textContent = "Điều ước của cậu đã được gửi thành công! 💌 Một email xác nhận đã được gửi. Hãy chuẩn bị tinh thần nhé!";
+           statusMessage.textContent = "Điều ước của cậu đã được gửi thành công. Tớ sẽ truyền đạt lại cho ông già noel, hãy check mail nhé! 💌";
            
            // ... (Logic hiển thị thông báo SUCCESS, ẩn nút gửi, ẩn nút xóa - như đã hướng dẫn trước đó) ...
            
@@ -185,9 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
             // 🛑 TẠI ĐÂY: Dữ liệu (wishItems) sẽ được gửi đến Backend để xử lý email 🛑
             // 4. Xử lý sau khi gửi thành công
-            
-            // Cập nhật nội dung thông báo
-            statusMessage.textContent = "Điều ước của cậu đã được gửi thành công. Tớ sẽ truyền đạt lại cho ông già noel, hãy check mail nhé! 💌";
             
             // Hiện thông báo và áp dụng style thành công
             statusMessage.classList.add('success');

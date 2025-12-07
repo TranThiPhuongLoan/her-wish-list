@@ -26,7 +26,7 @@ body {
 
 .wishlist-header h1 {
     color: #c0392b; /* Màu đỏ Giáng Sinh */
-    font-size: 2.5em;
+    font-size: 2.2em;
     letter-spacing: 2px;
 }
 
@@ -98,6 +98,7 @@ body {
     padding-top: 20px;
 }
 .btn-text{
+    font-family: Montserrat;
     color: #ffffff;
     font-weight: bold;
 }
