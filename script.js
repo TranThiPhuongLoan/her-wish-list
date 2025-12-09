@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
            console.log('EMAIL SENT SUCCESSFULLY!', response.status, response.text);
            
            // Hiển thị thông báo thành công
-           statusMessage.textContent = "Điều ước của cậu đã được gửi thành công. Tớ sẽ truyền đạt lại cho ông già noel, hãy check mail nhé! 💌";
+           statusMessage.textContent = "Wishlist của cậu đã được tới ông già Noel. Hãy check mail của cậu nhéee! 💌";
            
            // ... (Logic hiển thị thông báo SUCCESS, ẩn nút gửi, ẩn nút xóa - như đã hướng dẫn trước đó) ...
            
